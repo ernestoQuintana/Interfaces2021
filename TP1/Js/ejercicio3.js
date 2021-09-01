@@ -8,11 +8,11 @@ let x = 0 , y = 0; // variables de posicion
 let a = 255; //variable de color
 
 let gradient = 255/ height;
-let imageData = ctx.createImageData(width, height);
+let imageData = ctx.createImageData(width, height); // crea una nueva imagen en blanco
 
 drawRect(imageData,a);
 
-ctx.putImageData(imageData, x, y)*4;
+ctx.putImageData(imageData, x, y)*4; //pinta datos del objeto en el lienzo. Si se proporciona un rectangulo sucio.
 
 function drawRect(imageData,a){
     
