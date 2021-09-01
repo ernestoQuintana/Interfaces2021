@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <canvas width="300" height="300" id="area_de_dibujo"></canvas>
+    <p>Mueve las flechas del teclado para dibujar</p>
+    
+
+    <script>
+        var teclas = {
+            UP: 38,
+            DOWN: 40,
+            LEFT: 37,
+            RIGHT: 39
+        };
+
+        document.addEventListener("keydown", dibujarTeclado);
+        var cuadrito = document.getElementById("area_de_dibujo");
+        var papel = cuadrito.getContext("2d");
+        var x = 150;
+        var y = 150;
+
+        dibujarLinea("red", x - 1, y - 1, x + 1, y + 1, papel);
+
+        function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo) {
+            lienzo.beginPath();
+            lienzo.strokeStyle = color;
+            lienzo.lineWidth = 3;
+            lienzo.moveTo(xinicial, yinicial);
+            lienzo.lineTo(xfinal, yfinal);
+            lienzo.stroke();
+            lienzo.closePath();
+        }
+
+        function dibujarTeclado(evento) {
+            var colorcito = "#FAA";
+            var movimiento = 5;
+            switch (evento.keyCode) {
+                case teclas.UP:
+                    dibujarLinea(colorcito, x, y, x, y - movimiento, papel);
+                    y = y - movimiento;
+                    break;
+                case teclas.DOWN:
+                    dibujarLinea(colorcito, x, y, x, y + movimiento, papel);
+                    y = y + movimiento;
+                    break;
+                case teclas.LEFT:
+                    dibujarLinea(colorcito, x, y, x - movimiento, y, papel);
+                    x = x - movimiento;
+                    break;
+                case teclas.RIGHT:
+                    dibujarLinea(colorcito, x, y, x + movimiento, y, papel);
+                    x = x + movimiento;
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
